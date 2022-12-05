@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: localhost:8080/car-rental
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
