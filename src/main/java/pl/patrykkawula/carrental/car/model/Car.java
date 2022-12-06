@@ -2,6 +2,9 @@ package pl.patrykkawula.carrental.car.model;
 
 import jakarta.persistence.*;
 
+import java.time.Year;
+import java.util.ArrayList;
+
 @Entity
 public class Car {
     @Id
@@ -11,10 +14,22 @@ public class Car {
     private String model;
     @Embedded
     private Engine engine;
+    @Enumerated(EnumType.STRING)
     private Gearbox gearbox;
     private Double basePrice;
     private String vin;
-    //TODO finish class, chceck @Embadded and @Enumerated annotation
+    private Year productionYear;
+    @Enumerated(EnumType.STRING)
+    private CarType carType;
+    @Enumerated(EnumType.STRING)
+    private CarSegment carSegment;
+    private int seats;
+
+
+    public Car() {
+    }
+
+
 }
 
 
