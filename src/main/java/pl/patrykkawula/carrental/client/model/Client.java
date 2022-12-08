@@ -1,8 +1,11 @@
 package pl.patrykkawula.carrental.client.model;
 
 import jakarta.persistence.*;
+import pl.patrykkawula.carrental.rent.model.Rent;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Client {
@@ -16,7 +19,9 @@ public class Client {
     private String bankAccount;
     private LocalDate dateOfBirth;
     private String drivingLicenseNumber;
-    @OneToOne
+    @OneToMany(mappedBy = "client")
+    List<Rent> rentList = new ArrayList<>();
+    @ManyToOne
     private Address address;
 
     public Client() {
