@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import pl.patrykkawula.carrental.car.model.Car;
 import pl.patrykkawula.carrental.client.model.Client;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,8 +16,8 @@ public class Rent {
     private Client client;
     @ManyToOne
     private Car car;
-    private LocalDateTime from;
-    private LocalDateTime to;
+    private Instant from;
+    private Instant to;
     private String placeOfRent;
     private String getPlaceOfReturn;
     private Double price;
@@ -24,8 +25,7 @@ public class Rent {
     public Rent() {
     }
 
-    public Rent(Client client, Car car, LocalDateTime from, LocalDateTime to, String placeOfRent,
-                String getPlaceOfReturn, Double price) {
+    public Rent(Client client, Car car, Instant from, Instant to, String placeOfRent, String getPlaceOfReturn, Double price) {
         this.client = client;
         this.car = car;
         this.from = from;
@@ -59,19 +59,19 @@ public class Rent {
         this.car = car;
     }
 
-    public LocalDateTime getFrom() {
+    public Instant getFrom() {
         return from;
     }
 
-    public void setFrom(LocalDateTime from) {
+    public void setFrom(Instant from) {
         this.from = from;
     }
 
-    public LocalDateTime getTo() {
+    public Instant getTo() {
         return to;
     }
 
-    public void setTo(LocalDateTime to) {
+    public void setTo(Instant to) {
         this.to = to;
     }
 

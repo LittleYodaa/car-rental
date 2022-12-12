@@ -6,7 +6,6 @@ import jakarta.persistence.Enumerated;
 
 @Embeddable
 public class Engine {
-    private Long id;
     private int power;
     private double displacement;
     @Enumerated(EnumType.STRING)
