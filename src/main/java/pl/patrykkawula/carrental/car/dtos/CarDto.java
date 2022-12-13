@@ -1,14 +1,16 @@
-package pl.patrykkawula.carrental.car.model;
+package pl.patrykkawula.carrental.car.dtos;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import pl.patrykkawula.carrental.car.model.CarSegment;
+import pl.patrykkawula.carrental.car.model.CarType;
+import pl.patrykkawula.carrental.car.model.Engine;
+import pl.patrykkawula.carrental.car.model.Gearbox;
 
 import java.time.Year;
 
-@Entity
-public class Car {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CarDto {
     private String brand;
     private String model;
     @Embedded
@@ -23,18 +25,18 @@ public class Car {
     @Enumerated(EnumType.STRING)
     private CarSegment carSegment;
     private int seats;
-//    @OneToMany(mappedBy = "car")
-//    List<Rent> rentList = new ArrayList<>();
 
-    public Car() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public CarDto(String brand, String model, Engine engine, Gearbox gearbox, Double basePrice, String vin, Year productionYear, CarType carType, CarSegment carSegment, int seats) {
+        this.brand = brand;
+        this.model = model;
+        this.engine = engine;
+        this.gearbox = gearbox;
+        this.basePrice = basePrice;
+        this.vin = vin;
+        this.productionYear = productionYear;
+        this.carType = carType;
+        this.carSegment = carSegment;
+        this.seats = seats;
     }
 
     public String getBrand() {
@@ -117,5 +119,3 @@ public class Car {
         this.seats = seats;
     }
 }
-
-

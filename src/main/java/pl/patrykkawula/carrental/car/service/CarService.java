@@ -1,17 +1,18 @@
 package pl.patrykkawula.carrental.car.service;
 
-import pl.patrykkawula.carrental.car.model.Car;
+import pl.patrykkawula.carrental.car.model.*;
+import pl.patrykkawula.carrental.car.dtos.CarDto;
 
 import java.util.List;
 
 public interface CarService {
-    Car create(Car car);
+    Car save(Car car);
 
-    Car update(Long carId);
+    CarDto update(Long carId, CarDto carDto);
 
     void delete(Long carId);
 
     Car get(Long carId);
 
-    List<Car> get();
+    List<CarDto> get();
 }
