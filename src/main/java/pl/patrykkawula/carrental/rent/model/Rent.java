@@ -1,115 +1,27 @@
 package pl.patrykkawula.carrental.rent.model;
 
-import jakarta.persistence.*;
-import pl.patrykkawula.carrental.car.model.Car;
-import pl.patrykkawula.carrental.client.model.Client;
-
-import java.time.Instant;
-import java.time.LocalDateTime;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Rent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    private Client client;
-    @ManyToOne
-    private Car car;
-    private Instant from;
-    private Instant to;
+//    @ManyToOne
+//    @JoinColumn(name = "client_id")
+//    private Client client;
+//    @ManyToOne
+//    @JoinColumn(name = "car_id")
+//    private Car car;
+//    private Date from;
+//    private Date to;
     private String placeOfRent;
     private String getPlaceOfReturn;
     private Double price;
 
     public Rent() {
-    }
-
-    public Rent(Client client, Car car, Instant from, Instant to, String placeOfRent, String getPlaceOfReturn, Double price) {
-        this.client = client;
-        this.car = car;
-        this.from = from;
-        this.to = to;
-        this.placeOfRent = placeOfRent;
-        this.getPlaceOfReturn = getPlaceOfReturn;
-        this.price = price;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
-
-    public Instant getFrom() {
-        return from;
-    }
-
-    public void setFrom(Instant from) {
-        this.from = from;
-    }
-
-    public Instant getTo() {
-        return to;
-    }
-
-    public void setTo(Instant to) {
-        this.to = to;
-    }
-
-    public String getPlaceOfRent() {
-        return placeOfRent;
-    }
-
-    public void setPlaceOfRent(String placeOfRent) {
-        this.placeOfRent = placeOfRent;
-    }
-
-    public String getGetPlaceOfReturn() {
-        return getPlaceOfReturn;
-    }
-
-    public void setGetPlaceOfReturn(String getPlaceOfReturn) {
-        this.getPlaceOfReturn = getPlaceOfReturn;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "Rent{" +
-                "id=" + id +
-                ", client=" + client +
-                ", car=" + car +
-                ", from=" + from +
-                ", to=" + to +
-                ", placeOfRent='" + placeOfRent + '\'' +
-                ", getPlaceOfReturn='" + getPlaceOfReturn + '\'' +
-                ", price=" + price +
-                '}';
     }
 }

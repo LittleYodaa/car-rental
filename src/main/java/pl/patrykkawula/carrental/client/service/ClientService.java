@@ -1,12 +1,13 @@
-package pl.patrykkawula.carrental.service;
+package pl.patrykkawula.carrental.client.service;
 
 import pl.patrykkawula.carrental.api.client.CreateClientRequest;
 import pl.patrykkawula.carrental.api.client.ClientResponse;
 import pl.patrykkawula.carrental.api.client.UpdateClientRequest;
+import pl.patrykkawula.carrental.client.model.Client;
 
 public interface ClientService {
-  ClientResponse create(CreateClientRequest request);
-  ClientResponse update(UpdateClientRequest request);
-  void delete(Long customerId);
-  ClientResponse get(Long customerId);
+  Client create(Client client);
+  Client update(Long clientId);
+  void delete(Long clientId);
+  Client get(Long clientId);
 }

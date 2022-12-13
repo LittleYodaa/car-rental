@@ -1,11 +1,8 @@
 package pl.patrykkawula.carrental.car.model;
 
 import jakarta.persistence.*;
-import pl.patrykkawula.carrental.rent.model.Rent;
 
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Car {
@@ -26,13 +23,11 @@ public class Car {
     @Enumerated(EnumType.STRING)
     private CarSegment carSegment;
     private int seats;
-    @OneToMany(mappedBy = "car")
-    List<Rent> rentList = new ArrayList<>();
+//    @OneToMany(mappedBy = "car")
+//    List<Rent> rentList = new ArrayList<>();
 
     public Car() {
     }
-
-
 }
 
 
