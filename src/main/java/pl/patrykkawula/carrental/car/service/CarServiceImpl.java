@@ -17,7 +17,8 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car save(Car car) {
+    public Car save(CarDto carDto) {
+        Car car = carDtoToCarMapper(carDto);
         return carRepository.save(car);
     }
 
@@ -36,10 +37,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car get(Long carId) {
-        return carRepository
+    public CarDto get(Long carId) {
+        Car car = carRepository
                 .findById(carId)
                 .orElseThrow(CarNotFoundException::new);
+        return carToCarDtoMapper(car);
     }
 
     @Override
@@ -51,6 +53,11 @@ public class CarServiceImpl implements CarService {
     private CarDto carToCarDtoMapper(Car car) {
         return new CarDto(car.getBrand(), car.getModel(), car.getEngine(), car.getGearbox(), car.getBasePrice(),
                 car.getVin(), car.getProductionYear(), car.getCarType(), car.getCarSegment(), car.getSeats());
+    }
+
+    private Car carDtoToCarMapper(CarDto carDto) {
+        return new Car(carDto.getBrand(), carDto.getModel(), carDto.getEngine(), carDto.getGearbox(), carDto.getBasePrice(),
+                carDto.getVin(), carDto.getProductionYear(), carDto.getCarType(), carDto.getCarSegment(), carDto.getSeats());
     }
 
     private Car updateCar(Car car, CarDto carDto) {

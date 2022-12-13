@@ -118,4 +118,20 @@ public class CarDto {
     public void setSeats(int seats) {
         this.seats = seats;
     }
+
+    @Override
+    public String toString() {
+        return "CarDto{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", engine=" + engine +
+                ", gearbox=" + gearbox +
+                ", basePrice=" + basePrice +
+                ", vin='" + vin + '\'' +
+                ", productionYear=" + productionYear +
+                ", carType=" + carType +
+                ", carSegment=" + carSegment +
+                ", seats=" + seats +
+                '}';
+    }
 }

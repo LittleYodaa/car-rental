@@ -29,6 +29,19 @@ public class Car {
     public Car() {
     }
 
+    public Car(String brand, String model, Engine engine, Gearbox gearbox, Double basePrice, String vin, Year productionYear, CarType carType, CarSegment carSegment, int seats) {
+        this.brand = brand;
+        this.model = model;
+        this.engine = engine;
+        this.gearbox = gearbox;
+        this.basePrice = basePrice;
+        this.vin = vin;
+        this.productionYear = productionYear;
+        this.carType = carType;
+        this.carSegment = carSegment;
+        this.seats = seats;
+    }
+
     public Long getId() {
         return id;
     }
