@@ -1,10 +1,18 @@
 package pl.patrykkawula.carrental.car.service;
 
+import org.springframework.stereotype.Service;
 import pl.patrykkawula.carrental.car.model.Car;
 
 import java.util.List;
 
-public class CarServiceImpl implements CarService{
+@Service
+public class CarServiceImpl implements CarService {
+    private final CarRepository carRepository;
+
+    public CarServiceImpl(CarRepository carRepository) {
+        this.carRepository = carRepository;
+    }
+
     @Override
     public Car create(Car car) {
         return null;
