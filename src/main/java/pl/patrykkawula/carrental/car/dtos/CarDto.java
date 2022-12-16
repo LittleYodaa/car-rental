@@ -7,13 +7,14 @@ import pl.patrykkawula.carrental.car.model.Gearbox;
 
 import java.time.Year;
 
-record CarDto(String brand,
-              String model,
-              Engine engine,
-              Gearbox gearbox,
-              Double basePrice,
-              String vin,
-              Year productionYear,
-              CarType carType,
-              CarSegment carSegment, int seats) {
+public record CarDto(String brand,
+                     String model,
+                     Engine engine,
+                     Gearbox gearbox,
+                     Double basePrice,
+                     String vin,
+                     Year productionYear,
+                     CarType carType,
+                     CarSegment carSegment,
+                     int seats) {
 }
