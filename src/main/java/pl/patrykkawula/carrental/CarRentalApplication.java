@@ -24,6 +24,8 @@ public class CarRentalApplication {
         CarDto car2 = new CarDto("BMW", "series 3", engine2, Gearbox.MANUAL, 119.99, "XDKJFHSH7HN84753", Year.of(2008), CarType.STATION_WAGON, CarSegment.D, 5);
         CarDto car3 = new CarDto("Opel", "Adam", engine3, Gearbox.MANUAL, 99.99, "ZARJKD78HN84753", Year.of(2012), CarType.HATCHBACK, CarSegment.A, 4);
 
+        CarDto carDto1 = new CarDto("BMW", "series 3", engine2, Gearbox.MANUAL, 119.99, "XDKJFHSH7HN84753", Year.of(2008), CarType.STATION_WAGON, CarSegment.D, 6);
+
         carService.save(car1);
         carService.save(car2);
         carService.save(car3);
@@ -33,6 +35,7 @@ public class CarRentalApplication {
         CarDto carToPrint = carService.get(2L);
         System.out.println(carToPrint);
 
+        carService.update(2L, carDto1);
 
         for (CarDto carDto : carService.get()) {
             System.out.println(carDto);

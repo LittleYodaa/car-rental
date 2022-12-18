@@ -1,10 +1,13 @@
 package pl.patrykkawula.carrental.client.service;
 
-import pl.patrykkawula.carrental.client.model.Client;
+import pl.patrykkawula.carrental.client.dtos.ClientDto;
+
+import java.util.List;
 
 public interface ClientService {
-  Client create(Client client);
-  Client update(Long clientId);
+  ClientDto save(ClientDto clientDto);
+  ClientDto update(Long clientId, ClientDto clientDto);
   void delete(Long clientId);
-  Client get(Long clientId);
+  ClientDto get(Long clientId);
+  List<ClientDto> getAll();
 }

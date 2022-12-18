@@ -46,7 +46,10 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<CarDto> get() {
-        return carRepository.findAll().stream().map(this::map).toList();
+        return carRepository.findAll()
+                .stream()
+                .map(this::map)
+                .toList();
 
     }
 
