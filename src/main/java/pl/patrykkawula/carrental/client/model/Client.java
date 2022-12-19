@@ -16,9 +16,9 @@ public class Client {
     private String bankAccount;
     private LocalDate dateOfBirth;
     private String drivingLicenseNumber;
-//    @OneToMany(mappedBy = "client")
+    //    @OneToMany(mappedBy = "client")
 //    List<Rent> rentList = new ArrayList<>();
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Address address;
 
     public Client() {

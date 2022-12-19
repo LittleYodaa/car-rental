@@ -28,7 +28,7 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     public ClientDto update(Long clientId, ClientDto clientDto) {
         return clientRepository.findById(clientId)
-                .map(client -> update(client, clientDto))
+                .map(client -> updateClient(client, clientDto))
                 .map(this::map)
                 .orElseThrow(ClientNotFoundException::new);
     }
@@ -63,7 +63,7 @@ public class ClientServiceImpl implements ClientService {
                 clientDto.bankAccount(), clientDto.dateOfBirth(), clientDto.drivingLicenseNumber(), clientDto.address());
     }
 
-    private Client update(Client client, ClientDto clientDto) {
+    private Client updateClient(Client client, ClientDto clientDto) {
         client.setFirstName(clientDto.firstName());
         client.setLastName(clientDto.firstName());
         client.setEmail(clientDto.email());
