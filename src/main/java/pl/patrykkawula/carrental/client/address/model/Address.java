@@ -1,4 +1,4 @@
-package pl.patrykkawula.carrental.client.model;
+package pl.patrykkawula.carrental.client.address.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
