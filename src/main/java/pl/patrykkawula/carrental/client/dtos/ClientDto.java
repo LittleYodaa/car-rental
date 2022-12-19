@@ -1,6 +1,6 @@
 package pl.patrykkawula.carrental.client.dtos;
 
-import pl.patrykkawula.carrental.client.model.Address;
+import pl.patrykkawula.carrental.client.address.model.Address;
 
 import java.time.LocalDate;
 

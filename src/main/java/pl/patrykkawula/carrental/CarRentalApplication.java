@@ -3,18 +3,13 @@ package pl.patrykkawula.carrental;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import pl.patrykkawula.carrental.car.dtos.CarDto;
-import pl.patrykkawula.carrental.car.model.*;
 import pl.patrykkawula.carrental.car.service.CarService;
-import pl.patrykkawula.carrental.car.service.CarServiceImpl;
 import pl.patrykkawula.carrental.client.dtos.ClientDto;
-import pl.patrykkawula.carrental.client.model.Address;
-import pl.patrykkawula.carrental.client.model.Client;
+import pl.patrykkawula.carrental.client.address.model.Address;
 import pl.patrykkawula.carrental.client.service.ClientService;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.Year;
 
 @SpringBootApplication
 public class CarRentalApplication {
@@ -67,10 +62,10 @@ public class CarRentalApplication {
         clientService.delete(3L);
 
         System.out.println(clientService.get(2L));
-//
-//        for (ClientDto clientDto : clientService.getAll()) {
-//            System.out.println(clientDto);
-//        }
+
+        for (ClientDto clientDto : clientService.getAll()) {
+            System.out.println(clientDto);
+        }
 
         clientService.update(2L, clientUpdate2);
     }

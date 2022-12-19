@@ -1,6 +1,7 @@
 package pl.patrykkawula.carrental.client.model;
 
 import jakarta.persistence.*;
+import pl.patrykkawula.carrental.client.address.model.Address;
 
 import java.time.LocalDate;
 
@@ -18,7 +19,7 @@ public class Client {
     private String drivingLicenseNumber;
     //    @OneToMany(mappedBy = "client")
 //    List<Rent> rentList = new ArrayList<>();
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address address;
 
     public Client() {

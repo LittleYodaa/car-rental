@@ -20,6 +20,9 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientDto save(ClientDto clientDto) {
         Client client = map(clientDto);
+        client.setAddress(null);
+        clientRepository.save(client);
+        client.setAddress(clientDto.address());
         clientRepository.save(client);
         return clientDto;
     }
@@ -65,7 +68,7 @@ public class ClientServiceImpl implements ClientService {
 
     private Client updateClient(Client client, ClientDto clientDto) {
         client.setFirstName(clientDto.firstName());
-        client.setLastName(clientDto.firstName());
+        client.setLastName(clientDto.lastName());
         client.setEmail(clientDto.email());
         client.setPhoneNumber(clientDto.phoneNumber());
         client.setBankAccount(clientDto.bankAccount());
