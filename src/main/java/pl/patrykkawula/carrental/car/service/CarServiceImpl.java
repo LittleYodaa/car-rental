@@ -1,6 +1,8 @@
 package pl.patrykkawula.carrental.car.service;
 
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import pl.patrykkawula.carrental.car.exceptions.CarNotFoundException;
 import pl.patrykkawula.carrental.car.model.*;
@@ -11,6 +13,7 @@ import java.util.List;
 @Service
 public class CarServiceImpl implements CarService {
     private final CarRepository carRepository;
+    private static final Logger log = LoggerFactory.getLogger(CarServiceImpl.class);
 
     public CarServiceImpl(CarRepository carRepository) {
         this.carRepository = carRepository;
@@ -19,21 +22,26 @@ public class CarServiceImpl implements CarService {
     @Override
     public Car save(CarDto carDto) {
         Car car = map(carDto);
-        return carRepository.save(car);
+        carRepository.save(car);
+        log.info("Saved new car with id : {}", car.getId());
+        return car;
     }
 
     @Override
     @Transactional
     public CarDto update(Long carId, CarDto carDto) {
-        return carRepository.findById(carId)
+        CarDto updatedCar = carRepository.findById(carId)
                 .map(car -> updateCar(car, carDto))
                 .map(this::map)
                 .orElseThrow(CarNotFoundException::new);
+        log.info("Update car with id: {} body: {}", carId, updatedCar);
+        return updatedCar;
     }
 
     @Override
     public void delete(Long carId) {
         carRepository.deleteById(carId);
+        log.info("Delete car with id: {}", carId);
     }
 
     @Override
@@ -50,7 +58,6 @@ public class CarServiceImpl implements CarService {
                 .stream()
                 .map(this::map)
                 .toList();
-
     }
 
     private CarDto map(Car car) {
