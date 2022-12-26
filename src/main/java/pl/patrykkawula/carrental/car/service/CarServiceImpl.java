@@ -39,11 +39,9 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public CarDto delete(Long id) {
-        Car carToDelete = carRepository.findById(id).orElseThrow(() -> new CarException(id, CarException.Type.NOT_FOUND));
-        carRepository.delete(carToDelete);
+    public void delete(Long id) {
+        carRepository.deleteById(id);
         log.info("Delete car with id: {}", id);
-        return map(carToDelete);
     }
 
     @Override

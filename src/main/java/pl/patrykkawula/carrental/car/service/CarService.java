@@ -10,7 +10,7 @@ public interface CarService {
 
     CarDto update(Long carId, CarDto carDto);
 
-    CarDto delete(Long carId);
+    void delete(Long carId);
 
     CarDto get(Long carId);
 
