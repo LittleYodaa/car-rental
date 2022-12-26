@@ -9,7 +9,7 @@ public interface AddressService {
 
     AddressDto update(Long id, AddressDto addressDto);
 
-    AddressDto remove(Long id);
+    AddressDto delete(Long id);
 
     AddressDto get(Long id);
 

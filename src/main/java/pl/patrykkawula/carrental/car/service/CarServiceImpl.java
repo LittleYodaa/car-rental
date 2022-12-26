@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import pl.patrykkawula.carrental.car.exceptions.CarNotFoundException;
+import pl.patrykkawula.carrental.car.exceptions.CarException;
 import pl.patrykkawula.carrental.car.model.*;
 import pl.patrykkawula.carrental.car.dtos.CarDto;
 
@@ -20,40 +20,42 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car save(CarDto carDto) {
+    public CarDto save(CarDto carDto) {
         Car car = map(carDto);
         carRepository.save(car);
         log.info("Saved new car with id : {}", car.getId());
-        return car;
+        return carDto;
     }
 
     @Override
     @Transactional
-    public CarDto update(Long carId, CarDto carDto) {
-        CarDto updatedCar = carRepository.findById(carId)
+    public CarDto update(Long id, CarDto carDto) {
+        CarDto updatedCar = carRepository.findById(id)
                 .map(car -> updateCar(car, carDto))
                 .map(this::map)
-                .orElseThrow(CarNotFoundException::new);
-        log.info("Update car with id: {} body: {}", carId, updatedCar);
+                .orElseThrow(() -> new CarException(id, CarException.Type.NOT_FOUND));
+        log.info("Update car with id: {} body: {}", id, updatedCar);
         return updatedCar;
     }
 
     @Override
-    public void delete(Long carId) {
-        carRepository.deleteById(carId);
-        log.info("Delete car with id: {}", carId);
+    public CarDto delete(Long id) {
+        Car carToDelete = carRepository.findById(id).orElseThrow(() -> new CarException(id, CarException.Type.NOT_FOUND));
+        carRepository.delete(carToDelete);
+        log.info("Delete car with id: {}", id);
+        return map(carToDelete);
     }
 
     @Override
-    public CarDto get(Long carId) {
+    public CarDto get(Long id) {
         Car car = carRepository
-                .findById(carId)
-                .orElseThrow(CarNotFoundException::new);
+                .findById(id)
+                .orElseThrow(() -> new CarException(id, CarException.Type.NOT_FOUND));
         return map(car);
     }
 
     @Override
-    public List<CarDto> get() {
+    public List<CarDto> getAll() {
         return carRepository.findAll()
                 .stream()
                 .map(this::map)

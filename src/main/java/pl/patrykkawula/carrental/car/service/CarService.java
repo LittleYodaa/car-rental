@@ -6,13 +6,13 @@ import pl.patrykkawula.carrental.car.dtos.CarDto;
 import java.util.List;
 
 public interface CarService {
-    Car save(CarDto cardto);
+    CarDto save(CarDto cardto);
 
     CarDto update(Long carId, CarDto carDto);
 
-    void delete(Long carId);
+    CarDto delete(Long carId);
 
     CarDto get(Long carId);
 
-    List<CarDto> get();
+    List<CarDto> getAll();
 }

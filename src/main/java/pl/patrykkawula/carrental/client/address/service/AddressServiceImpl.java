@@ -1,6 +1,8 @@
 package pl.patrykkawula.carrental.client.address.service;
 
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import pl.patrykkawula.carrental.client.address.dtos.AddressDto;
 import pl.patrykkawula.carrental.client.address.exceptions.AddressException;
@@ -13,32 +15,37 @@ public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository addressRepository;
 
+    private static final Logger log = LoggerFactory.getLogger(Address.class);
+
     public AddressServiceImpl(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }
-
 
     @Override
     public AddressDto save(AddressDto addressDto) {
         Address address = map(addressDto);
         addressRepository.save(address);
+        log.info("Saved new address with id : {}", address.getId());
         return addressDto;
     }
 
     @Override
     @Transactional
     public AddressDto update(Long id, AddressDto addressDto) {
-        return addressRepository.findById(id)
+        AddressDto updatedAddress = addressRepository.findById(id)
                 .map(address -> updateAddress(address, addressDto))
                 .map(this::map)
                 .orElseThrow(() -> new AddressException(id, AddressException.Type.NOT_FOUND));
+        log.info("Update address with id: {} body: {}", id, updatedAddress);
+        return updatedAddress;
     }
 
     @Override
-    public AddressDto remove(Long id) {
+    public AddressDto delete(Long id) {
         Address addressToDelete = addressRepository.findById(id)
                 .orElseThrow(() -> new AddressException(id, AddressException.Type.NOT_FOUND));
         addressRepository.delete(addressToDelete);
+        log.info("Delete address with id: {}", id);
         return map(addressToDelete);
     }
 
@@ -58,11 +65,13 @@ public class AddressServiceImpl implements AddressService {
     }
 
     private Address map(AddressDto addressDto) {
-        return new Address(addressDto.country(), addressDto.city(), addressDto.zipCode(), addressDto.street(), addressDto.buildingNumber());
+        return new Address(addressDto.country(), addressDto.city(), addressDto.zipCode(), addressDto.street(),
+                addressDto.buildingNumber());
     }
 
     private AddressDto map(Address address) {
-        return new AddressDto(address.getCountry(), address.getCity(), address.getZipCode(), address.getStreet(), address.getBuildingNumber());
+        return new AddressDto(address.getCountry(), address.getCity(), address.getZipCode(), address.getStreet(),
+                address.getBuildingNumber());
     }
 
     private Address updateAddress(Address address, AddressDto addressDto) {
