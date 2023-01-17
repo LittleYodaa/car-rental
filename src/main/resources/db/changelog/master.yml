@@ -23,6 +23,13 @@ databaseChangeLog:
             constraintName: fk_client_address_id
             referencedTableName: address
             referencedColumnNames: id
+  - changeSet:
+      id: 0004_create_rent_table
+      author: patryk.kawula
+      changes:
+        - sqlFile:
+            path: db/changelog/0004_create_rent_table.sql
+
 
 
 

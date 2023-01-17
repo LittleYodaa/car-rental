@@ -19,7 +19,7 @@ public class Rent {
 //    private Date from;
 //    private Date to;
     private String placeOfRent;
-    private String getPlaceOfReturn;
+    private String placeOfReturn;
     private Double price;
 
     public Rent() {
