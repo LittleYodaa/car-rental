@@ -31,15 +31,6 @@ public class ClientServiceImpl implements ClientService {
         Client savedClient = clientRepository.save(client);
         log.info("Saved new car with id : {}", savedClient.getId());
         return map(savedClient);
-
-
-//        Client client = map(clientDto);
-//        client.setAddress(null);
-//        clientRepository.save(client);
-//        client.setAddress(clientDto.address());
-//        clientRepository.save(client);
-//        log.info("Saved new client with id : {}", client.getId());
-//        return clientDto;
     }
 
     @Override
@@ -71,12 +62,9 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public ClientDto delete(Long clientId) {
-        Client clientToDelete = clientRepository.findById(clientId)
-                .orElseThrow(() -> new ClientException(clientId, ClientException.Type.NOT_FOUND));
-        clientRepository.delete(clientToDelete);
+    public void delete(Long clientId) {
+        clientRepository.findById(clientId);
         log.info("Delete client with id: {}", clientId);
-        return map(clientToDelete);
     }
 
     @Override

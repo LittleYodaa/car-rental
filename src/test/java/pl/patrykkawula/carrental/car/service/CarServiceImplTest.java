@@ -1,5 +1,6 @@
 package pl.patrykkawula.carrental.car.service;
 
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -34,30 +35,33 @@ class CarServiceImplTest {
 
     @Test
     void shouldSaveNewCar() {
-//        given:
+//      given
         CarDto carToSave = new CarDto("testBrand", "testModel", new Engine(150, 100, EngineType.PETROL), Gearbox.AUTOMATIC, 100.00, "12345",
                 Year.of(2010), CarType.LIMOUSINE, CarSegment.D, 5);
 
-//        when:
+//      when
         final CarDto savedCar = underTest.save(carToSave);
 
-//        then:
+//      then
         Assertions.assertEquals(5, carRepository.findAll().get(0).getSeats());
         Assertions.assertEquals(5, savedCar.seats());
         Assertions.assertEquals(1, carRepository.findAll().size());
     }
 
+    @Test
     void shouldUpdateCar1ToCar2() {
         //given
-        CarDto carToSave1 = new CarDto("testBrand1", "testModel1", new Engine(150, 100, EngineType.PETROL), Gearbox.AUTOMATIC, 100.00, "12345",
+        Car carToSave1 = new Car("testBrand1", "testModel1", new Engine(150, 100, EngineType.PETROL), Gearbox.AUTOMATIC, 100.00, "12345",
                 Year.of(2010), CarType.LIMOUSINE, CarSegment.D, 5);
         CarDto carToSave2 = new CarDto("testBrand2", "testModel2", new Engine(150, 100, EngineType.PETROL), Gearbox.AUTOMATIC, 100.00, "12345",
-                Year.of(2010), CarType.LIMOUSINE, CarSegment.D, 5);
+                Year.of(2010), CarType.LIMOUSINE, CarSegment.D, 4);
         carRepository.save(carToSave1);
-        carRepository.save(carToSave2);
 
         //when
-        underTest.update(carToSave1.getId(), carToSave2)
+        underTest.update(carToSave1.getId(), carToSave2);
+
+        //then
+        Assertions.assertEquals(4, carRepository.findAll().get(0).getSeats());
     }
 
     @Test
@@ -65,14 +69,15 @@ class CarServiceImplTest {
         //given
         Car carToSave = new Car("testBrand", "testModel", new Engine(150, 100, EngineType.PETROL), Gearbox.AUTOMATIC, 100.00, "12345",
                 Year.of(2010), CarType.LIMOUSINE, CarSegment.D, 5);
-        carRepository.save(carToSave);
+        Car savedCar = carRepository.save(carToSave);
 
         //when
-        underTest.delete(1L);
+        underTest.delete(savedCar.getId());
 
         //then
         Assertions.assertEquals(0, carRepository.findAll().size());
     }
+
     @Test
     void shouldReturnCar() {
         //given

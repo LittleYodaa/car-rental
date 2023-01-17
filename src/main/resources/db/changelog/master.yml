@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0001_create_car_table
+      author: patryk.kawula
+      changes:
+        - sqlFile:
+            path: db/changelog/0001_create_car_table.sql
