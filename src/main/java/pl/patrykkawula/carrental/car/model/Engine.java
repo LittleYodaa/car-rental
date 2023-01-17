@@ -7,14 +7,14 @@ import jakarta.persistence.Enumerated;
 @Embeddable
 public class Engine {
     private int power;
-    private double displacement;
+    private int displacement;
     @Enumerated(EnumType.STRING)
     private EngineType engineType;
 
     public Engine() {
     }
 
-    public Engine(int power, double displacement, EngineType engineType) {
+    public Engine(int power, int displacement, EngineType engineType) {
         this.power = power;
         this.displacement = displacement;
         this.engineType = engineType;
