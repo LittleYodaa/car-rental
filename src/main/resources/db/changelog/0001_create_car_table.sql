@@ -5,11 +5,12 @@ CREATE TABLE car
     model VARCHAR(50),
     power INT,
     displacement DOUBLE,
+    engine_type VARCHAR(50),
     gearbox VARCHAR(50),
-    basePrice DOUBLE,
+    base_price DOUBLE,
     vin VARCHAR(50),
-    `year` INTEGER,
-    carType VARCHAR(50),
-    carSegment VARCHAR(50),
+    production_year INTEGER,
+    car_type VARCHAR(50),
+    car_segment VARCHAR(50),
     seats INT
 );

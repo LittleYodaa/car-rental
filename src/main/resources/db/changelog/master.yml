@@ -5,3 +5,24 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: db/changelog/0001_create_car_table.sql
+  - changeSet:
+      id: 0002_create_address_table
+      author: patryk.kawula
+      changes:
+        - sqlFile:
+            path: db/changelog/0002_create_address_table.sql
+  - changeSet:
+      id: 0003_create_client_table
+      author: patryk.kawula
+      changes:
+        - sqlFile:
+            path: db/changelog/0003_create_client_table.sql
+        - addForeignKeyConstraint:
+            baseTableName: client
+            baseColumnNames: address_id
+            constraintName: fk_client_address_id
+            referencedTableName: address
+            referencedColumnNames: id
+
+
+
