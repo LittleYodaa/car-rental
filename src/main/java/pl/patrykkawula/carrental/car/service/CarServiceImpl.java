@@ -22,9 +22,9 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarDto save(CarDto carDto) {
         Car car = map(carDto);
-        carRepository.save(car);
-        log.info("Saved new car with id : {}", car.getId());
-        return carDto;
+        Car savedCar = carRepository.save(car);
+        log.info("Saved new car with id : {}", savedCar.getId());
+        return map(savedCar);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class CarServiceImpl implements CarService {
     }
 
     private CarDto map(Car car) {
-        return new CarDto(car.getId(),car.getBrand(), car.getModel(), car.getEngine(), car.getGearbox(), car.getBasePrice(),
+        return new CarDto(car.getId(), car.getBrand(), car.getModel(), car.getEngine(), car.getGearbox(), car.getBasePrice(),
                 car.getVin(), car.getProductionYear(), car.getCarType(), car.getCarSegment(), car.getSeats());
     }
 

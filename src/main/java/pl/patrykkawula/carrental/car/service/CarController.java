@@ -27,6 +27,6 @@ public class CarController {
                 .path("/{id}")
                 .buildAndExpand(savedCar.id())
                 .toUri();
-        return ResponseEntity.created(savedCarUri).build();
+        return ResponseEntity.created(savedCarUri).body(savedCar);
     }
 }
