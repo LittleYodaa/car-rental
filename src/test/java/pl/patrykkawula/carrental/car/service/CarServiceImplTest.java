@@ -36,7 +36,7 @@ class CarServiceImplTest {
     @Test
     void shouldSaveNewCar() {
 //      given
-        CarDto carToSave = new CarDto("testBrand", "testModel", new Engine(150, 100, EngineType.PETROL), Gearbox.AUTOMATIC, 100.00, "12345",
+        CarDto carToSave = new CarDto(1L,"testBrand", "testModel", new Engine(150, 100, EngineType.PETROL), Gearbox.AUTOMATIC, 100.00, "12345",
                 Year.of(2010), CarType.LIMOUSINE, CarSegment.D, 5);
 
 //      when

@@ -61,7 +61,7 @@ public class CarServiceImpl implements CarService {
     }
 
     private CarDto map(Car car) {
-        return new CarDto(car.getBrand(), car.getModel(), car.getEngine(), car.getGearbox(), car.getBasePrice(),
+        return new CarDto(car.getId(),car.getBrand(), car.getModel(), car.getEngine(), car.getGearbox(), car.getBasePrice(),
                 car.getVin(), car.getProductionYear(), car.getCarType(), car.getCarSegment(), car.getSeats());
     }
 
