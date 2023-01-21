@@ -3,10 +3,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/car_rental
     username: root
-    password: root
+    password: Funraiser1
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: validate
     show-sql: true
   liquibase:
-    enabled: false
+    enabled: true
+    change-log: classpath:db/changelog/master.yml

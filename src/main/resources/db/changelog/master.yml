@@ -29,8 +29,14 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: db/changelog/0004_create_rent_table.sql
-  - include:
-      file: db/testdata/testdate.sql
+  - changeSet:
+      id: 0005_add_test_data
+      author: patryk.kawula
+      changes:
+        - sqlFile:
+            path: db/changelog/0005_add_test_data.sql
+
+
 
 
 
