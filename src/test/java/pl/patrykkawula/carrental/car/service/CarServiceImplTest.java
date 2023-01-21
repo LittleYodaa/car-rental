@@ -53,7 +53,7 @@ class CarServiceImplTest {
         //given
         Car carToSave1 = new Car("testBrand1", "testModel1", new Engine(150, 100, EngineType.PETROL), Gearbox.AUTOMATIC, 100.00, "12345",
                 Year.of(2010), CarType.LIMOUSINE, CarSegment.D, 5);
-        CarDto carToSave2 = new CarDto("testBrand2", "testModel2", new Engine(150, 100, EngineType.PETROL), Gearbox.AUTOMATIC, 100.00, "12345",
+        CarDto carToSave2 = new CarDto(1L,"testBrand2", "testModel2", new Engine(150, 100, EngineType.PETROL), Gearbox.AUTOMATIC, 100.00, "12345",
                 Year.of(2010), CarType.LIMOUSINE, CarSegment.D, 4);
         carRepository.save(carToSave1);
 
