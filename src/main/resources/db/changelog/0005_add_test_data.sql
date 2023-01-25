@@ -2,9 +2,9 @@ INSERT INTO car (`brand`, `model`, `power`, `displacement`, `engine_type`, `gear
                  `production_year`,
                  `car_type`, `car_segment`,
                  seats)
-VALUES ('Alfa Romeo', 'Giulia', 280, 2000, 'PETROL', 'AUTOMATIC', 400, 'ZARPAH7HN84753', 2017, 'limousine', 'D', 5),
-       ('BMW', 'series 3', 197, 3000, 'DIESEL', 'MANUAL', 150, 'XDKJFHSH7HN84753', 2008, 'station wagon', 'D', 5),
-       ('Opel', 'Adam S', 150, 1500, 'PETROL', 'MANUAL', 170, 'ZARJKD78HN84753', 2016, 'hatchback', 'A', 4);
+VALUES ('Alfa Romeo', 'Giulia', 280, 2000, 'PETROL', 'AUTOMATIC', 400, 'ZARPAH7HN84753', 2017, 'LIMOUSINE', 'D', 5),
+       ('BMW', 'series 3', 197, 3000, 'DIESEL', 'MANUAL', 150, 'XDKJFHSH7HN84753', 2008, 'STATION_WAGON', 'D', 5),
+       ('Opel', 'Adam S', 150, 1500, 'PETROL', 'MANUAL', 170, 'ZARJKD78HN84753', 2016, 'HATCHBACK', 'A', 4);
 
 INSERT INTO address (`country`, `city`, `zip_code`, `street`, `building_number`)
 VALUES ('Poland', 'Gdynia', '81-102', 'Podgórska', '6'),

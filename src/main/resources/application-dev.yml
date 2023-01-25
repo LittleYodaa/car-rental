@@ -12,6 +12,9 @@ spring:
       ddl-auto: validate
 logging:
   level:
+    sql: debug
     org:
-      hibernate:
-        SQL: debug
+      springframework:
+        web: DEBUG
+
+

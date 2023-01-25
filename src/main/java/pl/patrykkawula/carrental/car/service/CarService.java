@@ -14,4 +14,6 @@ public interface CarService {
     CarDto get(Long carId);
 
     List<CarDto> getAll();
+
+    List<CarDto> getAllByBrand(String brand);
 }

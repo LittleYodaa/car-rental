@@ -4,9 +4,10 @@ import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import pl.patrykkawula.carrental.car.exceptions.CarException;
-import pl.patrykkawula.carrental.car.model.*;
 import pl.patrykkawula.carrental.car.dtos.CarDto;
+import pl.patrykkawula.carrental.car.exceptions.CarException;
+import pl.patrykkawula.carrental.car.model.Car;
+import pl.patrykkawula.carrental.car.model.Engine;
 
 import java.util.List;
 
@@ -44,6 +45,7 @@ public class CarServiceImpl implements CarService {
         log.info("Delete car with id: {}", id);
     }
 
+
     @Override
     public CarDto get(Long id) {
         Car car = carRepository
@@ -56,6 +58,14 @@ public class CarServiceImpl implements CarService {
     public List<CarDto> getAll() {
         return carRepository.findAll()
                 .stream()
+                .map(this::map)
+                .toList();
+    }
+
+    @Override
+    public List<CarDto> getAllByBrand(String brand) {
+        return carRepository.findAll()
+                .stream().filter(c -> c.getBrand().equalsIgnoreCase(brand))
                 .map(this::map)
                 .toList();
     }
