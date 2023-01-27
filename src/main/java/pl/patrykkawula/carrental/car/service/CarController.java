@@ -8,6 +8,7 @@ import pl.patrykkawula.carrental.car.exceptions.CarException;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/car")
@@ -57,6 +58,15 @@ public class CarController {
 
     @GetMapping
     public ResponseEntity<List<CarDto>> getCars(@RequestParam(required = false) String brand) {
+
+        /*
+        // TODO
+        Fajna jest metoda Objects.isNull() zamiast sprawdzac przy pomocy '=='
+        całość można tak zastąpić:
+        List<CarDto> cars = Objects.isNull(brand) ? carService.getAll() : carService.getAllByBrand(brand);
+        return ResponseEntity.ok(cars);
+         */
+
         if (brand == null) {
             List<CarDto> cars = carService.getAll();
             return ResponseEntity.ok(cars);

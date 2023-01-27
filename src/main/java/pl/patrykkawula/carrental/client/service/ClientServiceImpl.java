@@ -92,6 +92,7 @@ public class ClientServiceImpl implements ClientService {
                 clientDto.bankAccount(), clientDto.dateOfBirth(), clientDto.drivingLicenseNumber(), map(clientDto.addressDto()));
     }
 
+    // todo te same metody są w AddressService. lepiej użyć tamtych jeśli już są napisane
     private Address map(AddressDto addressDto) {
         return new Address(addressDto.country(), addressDto.city(), addressDto.zipCode(), addressDto.street(), addressDto.buildingNumber());
     }

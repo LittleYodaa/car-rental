@@ -64,12 +64,14 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<CarDto> getAllByBrand(String brand) {
+        // TODO tutaj by było dobrze zrobić zapytanie do bazy o samochody z konkretną marką zamiast ciągnąć wszystkie i w javie filtrowac
         return carRepository.findAll()
                 .stream().filter(c -> c.getBrand().equalsIgnoreCase(brand))
                 .map(this::map)
                 .toList();
     }
 
+    // TODO przy takiej liczbie parametrów wzorzec Builder jest czytelniejszy i wygodniejszy od konstruktora
     private CarDto map(Car car) {
         return new CarDto(car.getId(), car.getBrand(), car.getModel(), car.getEngine(), car.getGearbox(), car.getBasePrice(),
                 car.getVin(), car.getProductionYear(), car.getCarType(), car.getCarSegment(), car.getSeats());

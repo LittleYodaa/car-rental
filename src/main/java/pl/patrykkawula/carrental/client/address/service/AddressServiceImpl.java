@@ -42,9 +42,11 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public AddressDto delete(Long id) {
+        // todo przy delete wystarczy addressRepository.deleteById(). Nie trzeba rzucać wyjątku ani zwracać dto,
+        // todo bo potem w kontrolerze obojetnie czy cos zostanie usuniete czy nie zwraca sie chyba 'non content' jesli dobrze pamietam
         Address addressToDelete = addressRepository.findById(id)
                 .orElseThrow(() -> new AddressException(id, AddressException.Type.NOT_FOUND));
-        addressRepository.delete(addressToDelete);
+        addressRepository.delete(addressToDelete);;
         log.info("Delete address with id: {}", id);
         return map(addressToDelete);
     }
