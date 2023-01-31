@@ -8,6 +8,10 @@ public class CarException extends RuntimeException {
         this.type = type;
     }
 
+    public Type getType() {
+        return type;
+    }
+
     public enum Type {
         NOT_FOUND,
         ALREADY_EXISTS

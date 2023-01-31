@@ -1,8 +1,6 @@
 package pl.patrykkawula.carrental.client.service;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,17 +14,17 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @ActiveProfiles("test")
 class ClientServiceImplTest {
 
     @Autowired
+    ClientService underTest;
+    @Autowired
     ClientRepository clientRepository;
 
-    @Autowired
-    ClientService underTest;
 
     @AfterEach
     void tearDown() {
@@ -45,7 +43,7 @@ class ClientServiceImplTest {
         underTest.save(client1);
 
         //then
-        Assertions.assertEquals("Client1", clientRepository.findAll().get(0).getFirstName());
+        assertEquals("Client1", clientRepository.findAll().get(0).getFirstName());
     }
 
     @Test
@@ -67,26 +65,26 @@ class ClientServiceImplTest {
         underTest.update(client1.getId(), client2);
 
         //then
-        Assertions.assertEquals("Client2", clientRepository.findAll().get(0).getFirstName());
+        assertEquals("Client2", clientRepository.findAll().get(0).getFirstName());
 
     }
 
-//    @Test
-//    void shouldDeleteClient() {
-//        //given
-//        Address address1 = new Address("Country1", "City1", "1111", "Street1", "1");
-//        Client client1 = new Client("Client1", "Client1", "client1@mail.com",
-//                "123456789", "2222333344445555",
-//                LocalDate.of(2023, Month.JANUARY, 1), "11223344", address1);
-//
-//        Client savedClient = clientRepository.save(client1);
-//
-//        //when
-//        underTest.delete(savedClient.getId());
-//
-//        //then
-//        Assertions.assertEquals(0, clientRepository.findAll().size());
-//    }
+    @Test
+    void shouldDeleteClient() {
+        //given
+        Address address1 = new Address("Country1", "City1", "1111", "Street1", "1");
+        Client client1 = new Client("Client1", "Client1", "client1@mail.com",
+                "123456789", "2222333344445555",
+                LocalDate.of(2023, Month.JANUARY, 1), "11223344", address1);
+
+        Client savedClient = clientRepository.save(client1);
+
+        //when
+        underTest.delete(savedClient.getId());
+
+        //then
+        assertEquals(0, clientRepository.count());
+    }
 
     @Test
     void shouldGetClient() {
@@ -102,7 +100,7 @@ class ClientServiceImplTest {
         underTest.get(client1.getId());
 
         //then
-        Assertions.assertEquals("Client1", clientRepository.findAll().get(0).getFirstName());
+        assertEquals("Client1", clientRepository.findAll().get(0).getFirstName());
     }
 
     @Test
@@ -119,6 +117,6 @@ class ClientServiceImplTest {
         List<ClientDto> clientList = underTest.getAll();
 
         //then
-        Assertions.assertEquals(clientList.size(), clientRepository.findAll().size());
+        assertEquals(clientList.size(), clientRepository.findAll().size());
     }
 }

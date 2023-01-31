@@ -1,6 +1,5 @@
 package pl.patrykkawula.carrental.car.service;
 
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -8,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import pl.patrykkawula.carrental.car.dtos.CarDto;
+import pl.patrykkawula.carrental.car.exceptions.CarException;
+import pl.patrykkawula.carrental.car.exceptions.CarException.Type;
 import pl.patrykkawula.carrental.car.model.Car;
 import pl.patrykkawula.carrental.car.model.CarSegment;
 import pl.patrykkawula.carrental.car.model.CarType;
@@ -17,6 +18,9 @@ import pl.patrykkawula.carrental.car.model.Gearbox;
 
 import java.time.Year;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -46,6 +50,16 @@ class CarServiceImplTest {
         Assertions.assertEquals(5, carRepository.findAll().get(0).getSeats());
         Assertions.assertEquals(5, savedCar.seats());
         Assertions.assertEquals(1, carRepository.findAll().size());
+    }
+
+    @Test
+    void shouldThrowExceptionTryingToGetNonExistingCar() {
+        int carId = 123;
+
+        CarException exception = assertThrows(CarException.class, () -> underTest.get(123L));
+
+        assertEquals("Car with id: %d".formatted(carId), exception.getMessage());
+        assertEquals(Type.NOT_FOUND, exception.getType());
     }
 
     @Test
